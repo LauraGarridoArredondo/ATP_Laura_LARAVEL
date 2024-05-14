@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id()->primary()->unique();
             $table->string('ubicacion');
             $table->enum('modalidad', ['Individual', 'Dobles', 'Individual y Dobles'])->nullable()->default('Individual');
-            $table->enum('mano', ['Master1000', 'Master200','Master350'])->nullable()->default('Master1000');
+            $table->enum('categoria', ['Master1000', 'Master200','Master350'])->nullable()->default('Master1000');
             $table->enum('superficie', ['duro', 'hierba','arcilla'])->nullable()->default('diestro');
             $table->foreignId('vacantes')->references('id')->on('tenistas');
             $table->string('premios');

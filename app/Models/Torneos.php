@@ -16,7 +16,7 @@ class Torneos extends Model
     protected $fillable = [
         'ubicacion',
         'modalidad',
-        'mano',
+        'categoria',
         'superficie',
         'vacantes',
         'premios',

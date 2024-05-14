@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\TenistasController;
+use App\Http\Controllers\TorneosController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
