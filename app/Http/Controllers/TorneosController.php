@@ -12,10 +12,8 @@ class TorneosController extends Controller
 
     public function index(Request $request)
     {
-        $torneos = Torneos::search($request->search, $request->tenistas)->orderBy('id', 'asc')->paginate(3);
-        $tenistas = Torneos::all();
-        return view('torneos.index')->with('torneos', $torneos)
-            ->with('tenistas', $tenistas);
+       $torneos= Torneos::all();
+        return view('torneos.index')->with('torneos', $torneos);
     }
 
     public function torneos(){

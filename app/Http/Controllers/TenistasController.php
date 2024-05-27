@@ -11,7 +11,7 @@ class TenistasController extends Controller
 
     public function index(Request $request)
     {
-        $tenistas = Tenistas::search($request->search)->orderBy('id', 'asc')->paginate(3);
+       $tenistas= Tenistas::all();
         return view('tenistas.index')->with('tenistas', $tenistas);
     }
 
