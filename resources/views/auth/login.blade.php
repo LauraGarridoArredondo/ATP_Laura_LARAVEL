@@ -18,7 +18,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header text-center" >¡Bienvenido de nuevo!</div>
+                    <div class="card-header text-center bg-info-subtle" >¡Bienvenido de nuevo!</div>
 
                     <div class="card-body" >
                         <form method="POST" action="{{ route('login') }}">

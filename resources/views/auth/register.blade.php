@@ -18,7 +18,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-center">¡Bienvenido a ATP TOUR!</div>
+                <div class="card-header bg-info-subtle text-center">¡Bienvenido a ATP TOUR!</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
