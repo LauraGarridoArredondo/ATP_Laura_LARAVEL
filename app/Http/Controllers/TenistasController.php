@@ -8,58 +8,52 @@ use Illuminate\Support\Facades\Cache;
 
 class TenistasController extends Controller
 {
-
     public function index(Request $request)
     {
-       $tenistas= Tenistas::all();
-        return view('tenistas.index')->with('tenistas', $tenistas);
+        $tenistas = Tenistas::all();
+        return view('tenistas.index', compact('tenistas'));
     }
 
     public function show($id)
     {
-        $tenista = Tenistas::find($id);
-        return view('tenistas.show')->with('tenista', $tenista);
+        $tenista = $this->getTenistas($id);
+        return view('tenistas.show', compact('tenista'));
     }
 
-    public function create(){
+    public function create()
+    {
         return view('tenistas.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'nombre' => 'min:4|max:120|required',
             'pais' => 'min:4|max:120|required',
             'fecha_nacimiento' => 'required',
-            'edad' => 'min:1|max:80|required',
-            'altura' => 'min:1|max:300|required',
-            'peso' => 'min:1|max:300|required',
+            'edad' => 'integer|min:1|max:80|required',
+            'altura' => 'integer|min:1|max:300|required',
+            'peso' => 'integer|min:1|max:300|required',
             'fecha_debut' => 'required',
             'mano' => 'required',
             'reves' => 'required',
             'entrenador' => 'min:4|max:120|required',
-            'dinero_ganado' => 'min:0|max:100000|required',
-            'mejor_ranking' => 'min:0|max:100|required',
-            'num_victorias' => 'min:0|max:100|required',
-            'num_derrotas' => 'min:0|max:100|required',
-            'imagen' => 'required',
+            'dinero_ganado' => 'numeric|min:0|max:100000|required',
+            'mejor_ranking' => 'integer|min:0|max:100|required',
+            'num_victorias' => 'integer|min:0|max:100|required',
+            'num_derrotas' => 'integer|min:0|max:100|required',
+            'imagen' => 'image|required',
         ]);
+
         try {
             $tenista = new Tenistas();
-            $tenista->nombre = $request->nombre;
-            $tenista->pais = $request->pais;
-            $tenista->fecha_nacimiento = $request->fecha_nacimiento;
-            $tenista->edad = $request->edad;
-            $tenista->altura = $request->altura;
-            $tenista->peso = $request->peso;
-            $tenista->fecha_debut = $request->fecha_debut;
-            $tenista->mano = $request->mano;
-            $tenista->reves = $request->reves;
-            $tenista->entrenador = $request->entrenador;
-            $tenista->dinero_ganado = $request->dinero_ganado;
-            $tenista->mejor_ranking = $request->mejor_ranking;
-            $tenista->num_victorias = $request->num_victorias;
-            $tenista->num_derrotas = $request->num_derrotas;
-            $tenista->imagen = $request->imagen;
+            $tenista->fill($request->all());
+
+            if ($request->hasFile('imagen')) {
+                $path = $request->file('imagen')->store('public/images');
+                $tenista->imagen = basename($path);
+            }
+
             $tenista->save();
             return redirect()->route('tenistas.show', $tenista->id);
         } catch (\Exception $e) {
@@ -67,54 +61,51 @@ class TenistasController extends Controller
         }
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         try {
-            $tenista = $this->tenistas->find($id);
-            return view('tenistas.edit')->with('tenista', $tenista);
-        }catch (\Exception $e) {
+            $tenista = Tenistas::findOrFail($id);
+            return view('tenistas.edit', compact('tenista'));
+        } catch (\Exception $e) {
             return redirect()->route('tenistas.index')->with('error', $e->getMessage());
         }
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         try {
-            $tenista = $this->tenistas->find($id);
-            $tenista->nombre = $request->nombre;
-            $tenista->pais = $request->pais;
-            $tenista->fecha_nacimiento = $request->fecha_nacimiento;
-            $tenista->edad = $request->edad;
-            $tenista->altura = $request->altura;
-            $tenista->peso = $request->peso;
-            $tenista->fecha_debut = $request->fecha_debut;
-            $tenista->mano = $request->mano;
-            $tenista->reves = $request->reves;
-            $tenista->entrenador = $request->entrenador;
-            $tenista->dinero_ganado = $request->dinero_ganado;
-            $tenista->mejor_ranking = $request->mejor_ranking;
-            $tenista->num_victorias = $request->num_victorias;
-            $tenista->num_derrotas = $request->num_derrotas;
-            $tenista->imagen = $request->imagen;
+            $tenista = Tenistas::findOrFail($id);
+            $tenista->fill($request->all());
+
+            if ($request->hasFile('imagen')) {
+                $path = $request->file('imagen')->store('public/images');
+                $tenista->imagen = basename($path);
+            }
+
             $tenista->save();
             return redirect()->route('tenistas.show', $tenista->id);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('tenistas.edit', $tenista->id)->with('error', $e->getMessage());
         }
     }
-    public function destroy($id){
+
+    public function destroy($id)
+    {
         try {
-            $tenista = $this->tenistas->find($id);
+            $tenista = Tenistas::findOrFail($id);
             $tenista->delete();
             return redirect()->route('tenistas.index');
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('tenistas.index')->with('error', $e->getMessage());
         }
     }
+
     public function editImage($id)
     {
         try {
-            $tenista = $this->tenistas->find($id);
-            return view('tenistas.editImage')->with('tenista', $tenista);
-        }catch (\Exception $e) {
+            $tenista = Tenistas::findOrFail($id);
+            return view('tenistas.editImage', compact('tenista'));
+        } catch (\Exception $e) {
             return redirect()->route('tenistas.index')->with('error', $e->getMessage());
         }
     }
@@ -122,11 +113,14 @@ class TenistasController extends Controller
     public function updateImage(Request $request, $id)
     {
         try {
-            $tenista = $this->tenistas->find($id);
-            $tenista->imagen = $request->imagen;
-            $tenista->save();
+            $tenista = Tenistas::findOrFail($id);
+            if ($request->hasFile('imagen')) {
+                $path = $request->file('imagen')->store('public/images');
+                $tenista->imagen = basename($path);
+                $tenista->save();
+            }
             return redirect()->route('tenistas.show', $tenista->id);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('tenistas.edit', $tenista->id)->with('error', $e->getMessage());
         }
     }
@@ -134,16 +128,18 @@ class TenistasController extends Controller
     public function recover($id)
     {
         try {
-            $tenista = $this->tenistas->onlyTrashed()->find($id);
+            $tenista = Tenistas::onlyTrashed()->findOrFail($id);
             $tenista->restore();
             return redirect()->route('tenistas.index');
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->route('tenistas.index')->with('error', $e->getMessage());
         }
     }
 
     private function getTenistas($id)
     {
-        return Cache::has('tenistas_'.$id) ? Cache::get('tenistas_'.$id) : $this->tenistas->find($id);
+        return Cache::remember("tenistas_{$id}", 60, function () use ($id) {
+            return Tenistas::findOrFail($id);
+        });
     }
 }

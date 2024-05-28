@@ -3,9 +3,19 @@
 {{-- Ponemos el título --}}
 @section('title', 'Editar Tenista')
 
-{{-- Agregamos el contenido de la página --}}
-@section('content')
-    <h1>Editar Tenista</h1>
+    <!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <title>Editar Tenistas</title>
+</head>
+@include('header')
+    <h1 class="bg-info-subtle text-muted text-center">Editar Tenista</h1>
 
     {{-- Codigos de validación de los errores, ver request validate del controlador --}}
     @if ($errors->any())
@@ -19,7 +29,14 @@
         </div>
         <br/>
     @endif
-
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ asset('images/tenistaEdit.jpg') }}" width="600px" alt="Rafael"/>
+            <br><br><br>
+            <img width="600px" src="{{ asset('images/atp_tour_2024.png') }}" alt="Logo" />
+        </div>
+        <div class="col-md-6">
     <form action="{{ route("tenistas.update", $tenista->id) }}" method="post">
         @csrf
         @method('PUT')
@@ -79,8 +96,8 @@
         </div>
 
         <div class="form-group">
-            <label for="mejor_rank">Mejor Rank:</label>
-            <input class="form-control" id="mejor_rank" name="mejor_rank" type="text" required value="{{$tenista->mejor_rank}}">
+            <label for="mejor_ranking">Mejor Rank:</label>
+            <input class="form-control" id="mejor_ranking" name="mejor_ranking" type="text" required value="{{$tenista->mejor_ranking}}">
         </div>
 
         <div class="form-group">
@@ -95,11 +112,16 @@
 
         <div class="form-group">
             <label for="imagen">Imagen:</label>
-            <input class="form-control" id="imagen" name="imagen" type="text" required value="{{$tenista->imagen}}">
+            <input class="form-control" id="imagen" name="imagen" type="file" required value="{{$tenista->imagen}}">
         </div>
 
         <button class="btn btn-primary" type="submit">Actualizar</button>
         <a class="btn btn-secondary mx-2" href="{{ route('tenistas.index') }}">Volver</a>
     </form>
-
-@endsection
+        </div>
+    </div>
+</div>
+</html>
+@include('about')
+@include('footer')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

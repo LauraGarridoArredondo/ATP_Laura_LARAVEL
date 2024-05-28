@@ -20,13 +20,18 @@ Route::group(['prefix' => 'tenistas'], function () {
     Route::get('/', [TenistasController::class, 'index'])->name('tenistas.index');
     Route::get('/create', [TenistasController::class, 'create'])->name('tenistas.create');
     Route::post('/', [TenistasController::class, 'store'])->name('tenistas.store');
-    Route::get('/{tenista}', [TenistasController::class, 'show'])->name('tenistas.show');
+
     Route::get('/{tenista}/edit', [TenistasController::class, 'edit'])->name('tenistas.edit');
     Route::put('/{tenista}', [TenistasController::class, 'update'])->name('tenistas.update');
     Route::delete('/{tenista}', [TenistasController::class, 'destroy'])->name('tenistas.destroy');
+
     Route::get('/{tenista}/edit-image', [TenistasController::class, 'editImage'])->name('tenistas.editImage');
     Route::patch('/{tenista}/edit-image', [TenistasController::class, 'updateImage'])->name('tenistas.updateImage');
+
+    Route::get('/{tenista}', [TenistasController::class, 'show'])->name('tenistas.show');
 });
+
+
 
 //Rutas para torneos
 Route::group(['prefix' => 'torneos'], function () {
