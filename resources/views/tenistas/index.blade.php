@@ -75,7 +75,7 @@
                     <form action="{{route('tenistas.destroy', $tenista->id)}}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que quieres borrarlo?')" type="submit">Eliminar</button>
+                        <button class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que quieres borrarlo?, debe no estar relacionado a ningún torneo para funcionar...')" type="submit">Eliminar</button>
                     </form>
                 </td>
             </tr>
