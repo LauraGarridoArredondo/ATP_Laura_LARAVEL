@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tenistas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class TenistasController extends Controller
 {
@@ -108,8 +109,10 @@ class TenistasController extends Controller
     {
         try {
             $tenista = Tenistas::find($id);
+            Log::info("Tenista editado correctamente: " . $tenista->id);
             return view('tenistas.editImage', compact('tenista'));
         } catch (\Exception $e) {
+            Log::error("Error al editar el tenista: " . $e->getMessage());
             return redirect()->route('tenistas.index')->with('error', $e->getMessage());
         }
     }
