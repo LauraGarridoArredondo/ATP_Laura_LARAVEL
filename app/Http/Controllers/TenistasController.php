@@ -45,7 +45,6 @@ class TenistasController extends Controller
         ]);
         try {
             $tenista = new Tenistas();
-            $tenista->ranking = $request->ranking;
             $tenista->nombre = $request->nombre;
             $tenista->pais = $request->pais;
             $tenista->fecha_nacimiento = $request->fecha_nacimiento;
@@ -80,7 +79,6 @@ class TenistasController extends Controller
     public function update(Request $request, $id){
         try {
             $tenista = $this->tenistas->find($id);
-            $tenista->ranking = $request->ranking;
             $tenista->nombre = $request->nombre;
             $tenista->pais = $request->pais;
             $tenista->fecha_nacimiento = $request->fecha_nacimiento;
