@@ -14,7 +14,7 @@
 <body>
 @include('header')
 <BR>
-<h1 class="text-center text-muted">Listado de Tenistas</h1>
+<h1 class="text-center text-muted bg-info-subtle">Listado de Tenistas</h1>
 
 <form action="{{ route('tenistas.index') }}" class="mb-3" method="get">
 @csrf
