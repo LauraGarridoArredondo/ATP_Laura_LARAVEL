@@ -94,16 +94,20 @@ class TenistasController extends Controller
         try {
             $tenista = Tenistas::findOrFail($id);
             $tenista->delete();
-            return redirect()->route('tenistas.index');
+            \Log::info('Tenista eliminado correctamente: ' . $tenista->id);
+            return redirect()->route('tenistas.index')->with('success', 'Tenista eliminado correctamente.');
         } catch (\Exception $e) {
-            return redirect()->route('tenistas.index')->with('error', $e->getMessage());
+            \Log::error('Error al eliminar el tenista: ' . $e->getMessage());
+            return redirect()->route('tenistas.index')->with('error', 'Error al eliminar el tenista: ' . $e->getMessage());
         }
     }
+
+
 
     public function editImage($id)
     {
         try {
-            $tenista = Tenistas::findOrFail($id);
+            $tenista = Tenistas::find($id);
             return view('tenistas.editImage', compact('tenista'));
         } catch (\Exception $e) {
             return redirect()->route('tenistas.index')->with('error', $e->getMessage());
@@ -113,7 +117,7 @@ class TenistasController extends Controller
     public function updateImage(Request $request, $id)
     {
         try {
-            $tenista = Tenistas::findOrFail($id);
+            $tenista = Tenistas::find($id);
             if ($request->hasFile('imagen')) {
                 $path = $request->file('imagen')->store('public/images');
                 $tenista->imagen = basename($path);

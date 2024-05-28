@@ -110,10 +110,6 @@
             <input class="form-control" id="num_derrotas" name="num_derrotas" type="number" required value="{{$tenista->num_derrotas}}">
         </div>
 
-        <div class="form-group">
-            <label for="imagen">Imagen:</label>
-            <input class="form-control" id="imagen" name="imagen" type="file" required value="{{$tenista->imagen}}">
-        </div>
 
         <button class="btn btn-primary" type="submit">Actualizar</button>
         <a class="btn btn-secondary mx-2" href="{{ route('tenistas.index') }}">Volver</a>
