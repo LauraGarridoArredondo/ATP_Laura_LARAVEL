@@ -27,7 +27,6 @@ class TenistasController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'ranking' => 'min:1|max:100|required|unique:tenistas,ranking',
             'nombre' => 'min:4|max:120|required',
             'pais' => 'min:4|max:120|required',
             'fecha_nacimiento' => 'required',
