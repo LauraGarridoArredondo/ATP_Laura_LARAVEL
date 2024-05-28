@@ -17,8 +17,7 @@ class TenistasController extends Controller
 
     public function show($id)
     {
-        $tenista = $this->tenistas->find($id);
-        Cache::put('tenista'.$tenista->id, $tenista, 60);
+        $tenista = Tenistas::find($id);
         return view('tenistas.show')->with('tenista', $tenista);
     }
 
