@@ -22,9 +22,8 @@ class TorneosController extends Controller
     }
 
     public function show($id){
-        $torneo = $this->torneos->find($id);
-        Cache::put('torneo'.$torneo->id, $torneo, 60);
-        return view('torneos.show')->with('torneo', $torneo);
+        $torneos = $this->getTorneo($id);
+        return view('torneos.show', compact('torneos'));
     }
     public function create(){
         $torneos = Torneos::where('id', '>', 1)->get();
@@ -125,8 +124,8 @@ class TorneosController extends Controller
 
     public function getTorneo($id)
     {
-        $torneo = $this->torneos->find($id);
-        Cache::put('torneo'.$torneo->id, $torneo, 60);
-        return view('torneos.show')->with('torneo', $torneo);
+        return Cache::remember("torneos_{$id}", 60, function () use ($id) {
+            return Torneos::findOrFail($id);
+        });
     }
 }

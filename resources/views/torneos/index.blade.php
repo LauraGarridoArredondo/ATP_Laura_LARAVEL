@@ -14,7 +14,7 @@
 <body>
 @include('header')
 <BR>
-<h1 class="text-center text-muted">Listado de Torneos</h1>
+<h1 class="text-center text-muted bg-info-subtle">Listado de Torneos</h1>
 
 <form action="{{ route('torneos.index') }}" class="mb-3" method="get">
     @csrf
@@ -32,6 +32,14 @@
         <tr>
             <th>ID</th>
             <th>Ubicación</th>
+            <th>Modalidad</th>
+            <th>Categoria</th>
+            <th>Superficie</th>
+            <th>Vacantes</th>
+            <th>Premios</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Imagen</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -40,12 +48,19 @@
             <tr>
                 <td>{{ $torneo->id }}</td>
               <td>{{ $torneo->ubicacion }}</td>
+                <td>{{ $torneo->modalidad }}</td>
+                <td>{{ $torneo->categoria }}</td>
+                <td>{{ $torneo->superficie }}</td>
+                <td>{{ $torneo->vacantes }}</td>
+                <td>{{ $torneo->premios }}</td>
+                <td>{{ $torneo->fecha_inicio }}</td>
+                <td>{{ $torneo->fecha_fin }}</td>
                 <td><img src="{{ $torneo->imagen }}" alt="{{ $torneo->nombre }}" width="150"></td>
                 <td>
-                    <a class="btn btn-primary btn-sm" href="{{route('to.show', $torneo->id)}}">Detalles</a>
-                    <a class="btn btn-secondary btn-sm" href="{{route('tenistas.edit', $torneo->id)}}">Editar</a>
-                    <a class="btn btn-info btn-sm" href="{{route('tenistas.editImage', $torneo->id)}}">Imagen</a>
-                    <form action="{{route('tenistas.destroy', $torneo->id)}}" method="POST" style="display: inline;">
+                    <a class="btn btn-primary btn-sm" href="{{route('torneos.show', $torneo->id)}}">Detalles</a>
+                    <a class="btn btn-secondary btn-sm" href="{{route('torneos.edit', $torneo->id)}}">Editar</a>
+                    <a class="btn btn-info btn-sm" href="{{route('torneos.editImage', $torneo->id)}}">Imagen</a>
+                    <form action="{{route('torneos.destroy', $torneo->id)}}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que quieres borrarlo?')"
@@ -58,10 +73,10 @@
         </tbody>
     </table>
 @else
-    <p>No hay tenistas registrados...</p>
+    <p>No hay torneos registrados...</p>
 @endif
 
-<a class="btn btn-success" href="{{route('tenistas.create')}}">Nuevo Tenista</a>
+<a class="btn btn-success" href="{{route('torneos.create')}}">Nuevo Torneo</a>
 @include('about')
 @include('footer')
 </body>
