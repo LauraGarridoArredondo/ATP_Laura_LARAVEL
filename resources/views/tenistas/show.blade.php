@@ -1,7 +1,7 @@
 @php use App\Models\Tenistas; @endphp
 
 @include('header')
-    <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,9 +14,11 @@
 </head>
 <body>
     @section('title', 'Tenistas Detalles')
-    @section('content')
-    <h1>Detalles de Tenistas</h1>
-        <dl class="row">
+    <br>
+    <h1 class="text-center bg-info-subtle">Detalles de Tenistas</h1>
+    <br>
+    <table>
+        <dl class="row text-muted  row-cols-md-6 row-cols-1">
             <dt class="col-sm-3">ID</dt>
             <dd class="col-sm-9">{{ $tenista->id }}</dd>
             <dt class="col-sm-3">Nombre</dt>
@@ -41,8 +43,8 @@
             <dd class="col-sm-9">{{ $tenista->entrenador }}</dd>
             <dt class="col-sm-3">Dinero Ganado</dt>
             <dd class="col-sm-9">{{ $tenista->dinero_ganado }}</dd>
-            <dt class="col-sm-3">Mejor Rank</dt>
-            <dd class="col-sm-9">{{ $tenista->mejor_rank }}</dd>
+            <dt class="col-sm-3">Mejor Ranking</dt>
+            <dd class="col-sm-9">{{ $tenista->mejor_ranking }}</dd>
             <dt class="col-sm-3">Numero de Victorias</dt>
             <dd class="col-sm-9">{{ $tenista->num_victorias }}</dd>
             <dt class="col-sm-3">Numero de Derrotas</dt>
@@ -50,8 +52,13 @@
             <dt class="col-sm-3">Imagen</dt>
             <dd class="col-sm-9"><img src="{{ $tenista->imagen }}" alt="{{ $tenista->nombre }}" width="150"></dd>
         </dl>
-<a class="btn btn-primary" href="{{route('tenistas.index')}}">Volver</a>
-    @endsection
+    </table>
+
+<a class="btn btn-primary text-white" href="{{route('tenistas.index')}}">Volver</a>
 </body>
+<br> <br>
+<img height="700px" width="1490px" src="{{ asset('images/tenistasDetalles.png') }}" alt="GifTenistas" />
+@include('about')
+@include('footer')
 </html>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
