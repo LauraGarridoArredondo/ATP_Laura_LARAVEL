@@ -17,6 +17,11 @@ class TorneosController extends Controller
        $torneos= Torneos::all();
         return view('torneos.index')->with('torneos', $torneos);
     }
+    public function vista(Request $request)
+    {
+        $torneos= Torneos::all();
+        return view('torneos.vista')->with('torneos', $torneos);
+    }
 
     public function torneos(){
         $torneos = Torneos::orderBy('id', 'asc')->paginate(3)();

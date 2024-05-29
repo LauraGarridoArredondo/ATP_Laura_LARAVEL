@@ -21,6 +21,8 @@ Route::group(['prefix' => 'tenistas'], function () {
     Route::get('/create', [TenistasController::class, 'create'])->name('tenistas.create');
     Route::post('/', [TenistasController::class, 'store'])->name('tenistas.store');
 
+    Route::get('/vista', [TenistasController::class, 'vista'])->name('tenistas.vista');
+
     Route::get('/{tenista}/edit', [TenistasController::class, 'edit'])->name('tenistas.edit');
     Route::put('/{tenista}', [TenistasController::class, 'update'])->name('tenistas.update');
     Route::delete('/{tenista}', [TenistasController::class, 'destroy'])->name('tenistas.destroy');
@@ -38,6 +40,9 @@ Route::group(['prefix' => 'torneos'], function () {
     Route::get('/', [TorneosController::class, 'index'])->name('torneos.index');
     Route::get('/create', [TorneosController::class, 'create'])->name('torneos.create');
     Route::post('/', [TorneosController::class, 'store'])->name('torneos.store');
+
+    Route::get('/vista', [TorneosController::class, 'vista'])->name('torneos.vista');
+
     Route::get('/{torneo}', [TorneosController::class, 'show'])->name('torneos.show');
     Route::get('/{torneo}/edit', [TorneosController::class, 'edit'])->name('torneos.edit');
     Route::put('/{torneo}', [TorneosController::class, 'update'])->name('torneos.update');

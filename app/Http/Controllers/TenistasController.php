@@ -15,6 +15,13 @@ class TenistasController extends Controller
         return view('tenistas.index', compact('tenistas'));
     }
 
+    public function vista(Request $request)
+    {
+        $tenistas = Tenistas::all();
+        return view('tenistas.vista', compact('tenistas'));
+    }
+
+
     public function show($id)
     {
         $tenista = $this->getTenistas($id);
