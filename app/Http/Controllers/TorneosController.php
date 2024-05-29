@@ -36,7 +36,7 @@ class TorneosController extends Controller
     public function store(Request $request){
         $request->validate([
             'ubicacion' => 'min:4|max:120|required',
-            'modalildad' => 'required',
+            'modalidad' => 'required',
             'categoria' => 'required',
             'superficie' => 'required',
             'vacantes' => 'required',
@@ -72,7 +72,7 @@ class TorneosController extends Controller
     public function update(Request $request, $id){
         $request->validate([
             'ubicacion' => 'min:4|max:120|required',
-            'modalildad' => 'required',
+            'modalidad' => 'required',
             'categoria' => 'required',
             'superficie' => 'required',
             'vacantes' => 'required',
