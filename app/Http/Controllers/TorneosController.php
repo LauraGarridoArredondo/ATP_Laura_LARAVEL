@@ -106,13 +106,13 @@ class TorneosController extends Controller
 
     public function destroy($id){
         try {
-            $torneo = $this->torneos()->find($id);
+            $torneo = Torneos::findOrFail($id);
             $torneo->delete();
             Log::info('Torneo eliminado correctamente: ' . $torneo->id);
-            return redirect()->route('torneos.index');
-        }catch (\Exception $e) {
+            return redirect()->route('torneos.index')->with('success', 'Torneo eliminado correctamente.');
+        }catch (Exception $e){
             Log::error('Error al eliminar el torneo: ' . $e->getMessage());
-            return redirect()->route('torneos.index')->with('error', $e->getMessage());
+            return redirect()->route('torneos.index')->with('error', 'Error al eliminar el torneo: ' . $e->getMessage());
         }
     }
 
