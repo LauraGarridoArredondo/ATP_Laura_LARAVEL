@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Tenistas;
 use App\Models\Torneos;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class TorneosController extends Controller
 {
@@ -62,27 +64,31 @@ class TorneosController extends Controller
             return redirect('/torneos')->with('error', $e->getMessage());
         }
     }
-    public function edit($id){
-        $torneo = $this->torneos->find($id);
-        $tenistas = Tenistas::where('id', '>', 1)->get();
-        return view('torneos.edit')->with('torneo', $torneo)
-            ->with('tenistas', $tenistas);
+    public function edit($id) {
+        try {
+            $torneo = Torneos::findOrFail($id);
+            return view('torneos.edit', compact('torneo'));
+        } catch (Exception $e) {
+            return redirect('/torneos')->with('error', $e->getMessage());
+        }
     }
 
-    public function update(Request $request, $id){
+
+    public function update(Request $request, $id) {
         $request->validate([
             'ubicacion' => 'min:4|max:120|required',
             'modalidad' => 'required',
             'categoria' => 'required',
             'superficie' => 'required',
             'vacantes' => 'required',
-            'premios' => 'min:4|max:120|required',
-            'fecha_inicio' => 'required',
-            'fecha_fin' => 'required',
+            'premios' => 'required|numeric',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'required|date',
             'imagen' => 'required',
         ]);
+
         try {
-            $torneo = $this->torneos->find($id);
+            $torneo = Torneos::findOrFail($id);
             $torneo->ubicacion = $request->ubicacion;
             $torneo->modalidad = $request->modalidad;
             $torneo->categoria = $request->categoria;
@@ -90,25 +96,38 @@ class TorneosController extends Controller
             $torneo->vacantes = $request->vacantes;
             $torneo->premios = $request->premios;
             $torneo->fecha_inicio = $request->fecha_inicio;
-    }catch (Exception $e){
+            $torneo->fecha_fin = $request->fecha_fin;
+            $torneo->imagen = $request->imagen;
+            $torneo->save();
+
+            return redirect('/torneos')->with('success', 'Torneo actualizado');
+        } catch (Exception $e) {
             return redirect('/torneos')->with('error', $e->getMessage());
         }
     }
+
     public function destroy($id){
         try {
             $torneo = $this->torneos()->find($id);
             $torneo->delete();
+            Log::info('Torneo eliminado correctamente: ' . $torneo->id);
             return redirect()->route('torneos.index');
         }catch (\Exception $e) {
+            Log::error('Error al eliminar el torneo: ' . $e->getMessage());
             return redirect()->route('torneos.index')->with('error', $e->getMessage());
         }
     }
 
-    public function editImagen($id)
+    public function editImage($id)
     {
-        $torneo = $this->torneos->find($id);
-        Cache::put($id, $torneo, 60);
-        return view('torneos.editImagen')->with('torneo', $torneo);
+        try {
+            $torneo = Torneos::find($id);
+            Log::info("Torneo editado correctamente: " . $torneo->id);
+            return view('torneos.editImage', compact('torneo'));
+        }catch (\Exception $e){
+            Log::error("Error al editar el torneo: " . $e->getMessage());
+            return redirect()->route('torneos.index')->with('error', $e->getMessage());
+        }
     }
 
     public function updateImagen(Request $request, $id)

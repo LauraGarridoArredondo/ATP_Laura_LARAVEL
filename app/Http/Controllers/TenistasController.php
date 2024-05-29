@@ -95,10 +95,10 @@ class TenistasController extends Controller
         try {
             $tenista = Tenistas::findOrFail($id);
             $tenista->delete();
-            \Log::info('Tenista eliminado correctamente: ' . $tenista->id);
+            Log::info('Tenista eliminado correctamente: ' . $tenista->id);
             return redirect()->route('tenistas.index')->with('success', 'Tenista eliminado correctamente.');
         } catch (\Exception $e) {
-            \Log::error('Error al eliminar el tenista: ' . $e->getMessage());
+            Log::error('Error al eliminar el tenista: ' . $e->getMessage());
             return redirect()->route('tenistas.index')->with('error', 'Error al eliminar el tenista: ' . $e->getMessage());
         }
     }
