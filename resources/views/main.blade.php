@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="card bg-dark text-white text-center col col-md-12">
+        <div class="card bg-dark text-white  col col-md-12">
             <img class="card-img-md" src="{{ asset('images/predictor_Picks.jpg') }}" alt="predictor">
             <div class="card-img-overlay">
                 <h5 class="card-title">Juego Predictor: La gran oportunidad de Sinner en Roland Garros</h5>

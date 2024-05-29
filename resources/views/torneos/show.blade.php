@@ -43,6 +43,7 @@
 </table>
 
 <a class="btn btn-primary text-white" href="{{route('torneos.index')}}">Volver</a>
+{{--<a class="btn btn-primary text-white" href="{{route('torneos.vista')}}">Volver</a>--}}
 </body>
 <br> <br>
 <img height="700px" width="1490px" src="{{ asset('images/atpCollage.png') }}" alt="GifTenistas" />
