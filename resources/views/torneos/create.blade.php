@@ -18,8 +18,6 @@
 <div class="text-center">
     <img width="110px" src="{{ asset('images/raquetass.png') }}" alt="raquetas"/>
 </div>
-
-{{-- Codigos de validación de los errores --}}
 @if ($errors->any())
     <div class="alert alert-danger alert-dismissible">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

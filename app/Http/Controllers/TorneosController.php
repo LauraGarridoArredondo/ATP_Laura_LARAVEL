@@ -45,7 +45,7 @@ class TorneosController extends Controller
             'premios' => 'min:4|max:120|required',
             'fecha_inicio' => 'required',
             'fecha_fin' => 'required',
-            'imagen' => 'required',
+            'imagen' => 'required'
         ]);
         try {
             $torneo = new Torneos();
@@ -81,10 +81,9 @@ class TorneosController extends Controller
             'categoria' => 'required',
             'superficie' => 'required',
             'vacantes' => 'required',
-            'premios' => 'required|numeric',
+            'premios' => 'required',
             'fecha_inicio' => 'required|date',
             'fecha_fin' => 'required|date',
-            'imagen' => 'required',
         ]);
 
         try {
@@ -97,7 +96,6 @@ class TorneosController extends Controller
             $torneo->premios = $request->premios;
             $torneo->fecha_inicio = $request->fecha_inicio;
             $torneo->fecha_fin = $request->fecha_fin;
-            $torneo->imagen = $request->imagen;
             $torneo->save();
 
             return redirect('/torneos')->with('success', 'Torneo actualizado');
@@ -130,16 +128,21 @@ class TorneosController extends Controller
         }
     }
 
-    public function updateImagen(Request $request, $id)
+    public function updateImage(Request $request, $id)
     {
-        $request->validate([
-            'imagen' => 'required',
-        ]);
-        $torneo = $this->torneos->find($id);
-        $torneo->imagen = $request->imagen;
-        $torneo->save();
-        return redirect()->route('torneos.show', $id);
+        try {
+            $torneo = Tenistas::find($id);
+            if ($request->hasFile('imagen')) {
+                $path = $request->file('imagen')->store('public/images');
+                $torneo->imagen = basename($path);
+                $torneo->save();
+            }
+            return redirect()->route('torneos.show', $torneo->id);
+        } catch (\Exception $e) {
+            return redirect()->route('torneos.edit', $torneo->id)->with('error', $e->getMessage());
+        }
     }
+
 
     public function getTorneo($id)
     {

@@ -1,6 +1,5 @@
 @php use App\Models\Torneos; @endphp
 
-{{-- Ponemos el título --}}
 @section('title', 'Editar Torneos')
 
     <!doctype html>
@@ -16,8 +15,6 @@
 </head>
 @include('header')
 <h1 class="bg-info-subtle text-muted text-center">Editar Torneo</h1>
-
-{{-- Codigos de validación de los errores, ver request validate del controlador --}}
 @if ($errors->any())
     <div class="alert alert-danger alert-dismissible">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
