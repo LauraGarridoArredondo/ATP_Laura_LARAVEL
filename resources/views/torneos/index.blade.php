@@ -19,7 +19,7 @@
 <form action="{{ route('torneos.index') }}" class="mb-3" method="get">
     @csrf
     <div class="input-group">
-        <input type="text" class="form-control" id="search" name="search" placeholder="Master 1000...">
+        <input type="text" class="form-control" id="search" name="search" placeholder="Barcelona...">
         <div class="input-group-append">
             <button class="btn btn-primary" type="submit">Buscar</button>
         </div>

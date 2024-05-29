@@ -14,8 +14,17 @@ class TorneosController extends Controller
 
     public function index(Request $request)
     {
-       $torneos= Torneos::all();
-        return view('torneos.index')->with('torneos', $torneos);
+        $search = $request->input('search');
+
+        if ($search) {
+            // Filtra los tenistas según el nombre
+            $torneos = Torneos::where('ubicacion', 'like', "%{$search}%")->get();
+        } else {
+            // Si no hay búsqueda, muestra todos los tenistas
+            $torneos = Torneos::all();
+        }
+
+        return view('torneos.index', compact('torneos'));
     }
     public function vista(Request $request)
     {

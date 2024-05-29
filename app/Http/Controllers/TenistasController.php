@@ -11,7 +11,16 @@ class TenistasController extends Controller
 {
     public function index(Request $request)
     {
-        $tenistas = Tenistas::all();
+        $search = $request->input('search');
+
+        if ($search) {
+            // Filtra los tenistas según el nombre
+            $tenistas = Tenistas::where('nombre', 'like', "%{$search}%")->get();
+        } else {
+            // Si no hay búsqueda, muestra todos los tenistas
+            $tenistas = Tenistas::all();
+        }
+
         return view('tenistas.index', compact('tenistas'));
     }
 
