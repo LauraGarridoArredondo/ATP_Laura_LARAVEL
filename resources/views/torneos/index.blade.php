@@ -40,6 +40,7 @@
             <th>Fecha Inicio</th>
             <th>Fecha Fin</th>
             <th>Imagen</th>
+            <th></th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -56,6 +57,7 @@
                 <td>{{ $torneo->fecha_inicio }}</td>
                 <td>{{ $torneo->fecha_fin }}</td>
                 <td><img src="{{ $torneo->imagen }}" alt="{{ $torneo->nombre }}" width="150"></td>
+                <td><img src="{{ asset('storage/images/' . $torneo->imagen) }}" alt="{{ $torneo->ubicacion }}" width="150"></td>
                 <td>
                     <a class="btn btn-primary btn-sm" href="{{route('torneos.show', $torneo->id)}}">Detalles</a>
                     <a class="btn btn-secondary btn-sm" href="{{route('torneos.edit', $torneo->id)}}">Editar</a>

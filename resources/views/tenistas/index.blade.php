@@ -46,6 +46,7 @@
             <th>Numero de Victorias</th>
             <th>Numero de Derrotas</th>
             <th>Imagen</th>
+            <th></th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -68,6 +69,7 @@
                 <td>{{ $tenista->num_victorias }}</td>
                 <td>{{ $tenista->num_derrotas }}</td>
                 <td><img src="{{ $tenista->imagen }}" alt="{{ $tenista->nombre }}" width="150"></td>
+                <td><img src="{{ asset('storage/images/' . $tenista->imagen) }}" alt="{{ $tenista->nombre }}" width="150"></td>
                 <td>
                     <a class="btn btn-primary btn-sm" href="{{route('tenistas.show', $tenista->id)}}">Detalles</a>
                     <a class="btn btn-secondary btn-sm" href="{{route('tenistas.edit', $tenista->id)}}">Editar</a>

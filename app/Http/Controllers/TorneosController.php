@@ -138,7 +138,7 @@ class TorneosController extends Controller
             $torneo = Torneos::find($id);
             Log::info("Torneo editado correctamente: " . $torneo->id);
             return view('torneos.editImage', compact('torneo'));
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             Log::error("Error al editar el torneo: " . $e->getMessage());
             return redirect()->route('torneos.index')->with('error', $e->getMessage());
         }
@@ -147,7 +147,7 @@ class TorneosController extends Controller
     public function updateImage(Request $request, $id)
     {
         try {
-            $torneo = Tenistas::find($id);
+            $torneo = Torneos::find($id);
             if ($request->hasFile('imagen')) {
                 $path = $request->file('imagen')->store('public/images');
                 $torneo->imagen = basename($path);
@@ -158,7 +158,6 @@ class TorneosController extends Controller
             return redirect()->route('torneos.edit', $torneo->id)->with('error', $e->getMessage());
         }
     }
-
 
     public function getTorneo($id)
     {
