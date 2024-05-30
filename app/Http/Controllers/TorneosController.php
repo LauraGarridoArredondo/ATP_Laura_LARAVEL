@@ -42,8 +42,8 @@ class TorneosController extends Controller
         return view('torneos.show', compact('torneos'));
     }
     public function create(){
-        $torneos = Torneos::where('id', '>', 1)->get();
-        return view('torneos.create')->with('torneos', $torneos);
+        $tenistas = Tenistas::all();
+        return view('torneos.create')->with('tenistas', $tenistas);
     }
     public function getTorneosByTenistas($id){
         $tenistas = Tenistas::where('id', $id)->get($id)->paginate(3);
@@ -73,8 +73,10 @@ class TorneosController extends Controller
             $torneo->fecha_fin = $request->fecha_fin;
             $torneo->imagen = $request->imagen;
             $torneo->save();
+            Log::info('Torneo creado correctamente: ' . $torneo->id);
             return redirect('/torneos')->with('success', 'Torneo creado');
         }catch (Exception $e){
+            Log::error('Error al crear el torneo: ' . $e->getMessage());
             return redirect('/torneos')->with('error', $e->getMessage());
         }
     }

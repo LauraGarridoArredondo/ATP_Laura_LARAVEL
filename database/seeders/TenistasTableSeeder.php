@@ -17,7 +17,6 @@ class TenistasTableSeeder extends Seeder
         Tenistas::truncate();
         DB::table('tenistas')->insert([
             [
-                'id' => 1,
                 'nombre' => 'Cristiano',
                 'pais' => 'Portugal',
                 'fecha_nacimiento' => '1985-02-05',
@@ -35,7 +34,6 @@ class TenistasTableSeeder extends Seeder
                 'imagen' => 'https://media.gettyimages.com/id/51618212/es/foto/flushing-meadows-united-states-cristiano-caratti-of-italy-hits-a-forehand-to-goran-ivanisevic-of.jpg?s=612x612&w=gi&k=20&c=f0swC1KIQj1RQxdu92iPxAVXJAFo1SzT-BEA2-2UIbI=',
             ],
             [
-                'id' => 2,
                 'nombre' => 'Carlos',
                 'pais' => 'España',
                 'fecha_nacimiento' => '1985-02-05',
@@ -53,7 +51,6 @@ class TenistasTableSeeder extends Seeder
                 'imagen' => 'https://murciaplaza.com/public/Image/2023/8/Alcaraz-ATPTour-Tenis_NoticiaAmpliada.jpg',
             ],
             [
-                'id' => 3,
                 'nombre' => 'Camila',
                 'pais' => 'Brasil',
                 'fecha_nacimiento' => '1990-01-05',
@@ -71,7 +68,6 @@ class TenistasTableSeeder extends Seeder
                 'imagen' => 'https://e00-marca.uecdn.es/assets/multimedia/imagenes/2022/12/24/16718868633433.jpg',
             ],
             [
-                'id' => 4,
                 'nombre' => 'Maria',
                 'pais' => 'Peru',
                 'fecha_nacimiento' => '1985-02-05',
@@ -89,7 +85,6 @@ class TenistasTableSeeder extends Seeder
                 'imagen' => 'https://estaticos.elmundo.es/assets/multimedia/imagenes/2016/03/08/14574590469239.jpg',
             ],
             [
-                'id' => 5,
                 'nombre' => 'Roger',
                 'pais' => 'Francia',
                 'fecha_nacimiento' => '1908-02-10',
@@ -107,7 +102,6 @@ class TenistasTableSeeder extends Seeder
                 'imagen' => 'https://s.france24.com/media/display/5301008a-34fd-11ed-81ea-005056bfa79e/w:1280/p:1x1/fa82ab9d4965dc99a40ad048032ba12a7347296d.jpg',
             ],
             [
-                'id' => 6,
                 'nombre' => 'Serena',
                 'pais' => 'Brazil',
                 'fecha_nacimiento' => '1979-04-9',

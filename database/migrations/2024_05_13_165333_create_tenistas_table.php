@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tenistas', function (Blueprint $table) {
-            $table->id()->primary()->unique();
+            $table->id();
             $table->string('nombre');
             $table->string('pais');
             $table->date('fecha_nacimiento');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->integer('mejor_ranking');
             $table->integer('num_victorias');
             $table->integer('num_derrotas');
-            $table->string('imagen')->default('https://');
+            $table->string('imagen')->default('https://via.placeholder.com/150');
             $table->timestamps();
         });
     }

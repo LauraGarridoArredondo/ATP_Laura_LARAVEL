@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tenistas;
+use App\Models\Torneos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
@@ -39,7 +40,8 @@ class TenistasController extends Controller
 
     public function create()
     {
-        return view('tenistas.create');
+        $torneos = Torneos::all();
+        return view('tenistas.create')->  with('torneos', $torneos);
     }
 
     public function store(Request $request)
@@ -72,8 +74,10 @@ class TenistasController extends Controller
             }
 
             $tenista->save();
+            Log::info('Tenista creado correctamente: ' . $tenista->id);
             return redirect()->route('tenistas.show', $tenista->id);
         } catch (\Exception $e) {
+            Log::error('Error al crear el tenista: ' . $e->getMessage());
             return redirect()->route('tenistas.create')->with('error', $e->getMessage());
         }
     }

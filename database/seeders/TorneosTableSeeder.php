@@ -17,7 +17,6 @@ class TorneosTableSeeder extends Seeder
         Torneos::truncate();
         DB::table('torneos')->insert([
             [
-                'id' => 1,
                 'ubicacion' => 'Barcelona',
                 'modalidad' => 'Individual',
                 'categoria' => 'Master1000',
@@ -29,7 +28,6 @@ class TorneosTableSeeder extends Seeder
                 'imagen' => 'https://www.atptour.com/-/media/images/news/2022/06/10/14/28/rome-tournament-profile.jpg',
             ],
             [
-                'id' => 2,
                 'ubicacion' => 'Madrid',
                 'modalidad' => 'Dobles',
                 'categoria' => 'Master200',
@@ -41,7 +39,6 @@ class TorneosTableSeeder extends Seeder
                 'imagen' => 'https://www.atptour.com/-/media/images/atp-tournaments/tournament-images/geneva2021.jpg',
             ],
             [
-                'id' => 3,
                 'ubicacion' => 'Valencia',
                 'modalidad' => 'Individual y Dobles',
                 'categoria' => 'Master350',
@@ -53,7 +50,6 @@ class TorneosTableSeeder extends Seeder
                 'imagen' => 'https://www.atptour.com/-/media/images/atp-tournaments/tournament-images/lyon_tournimage_2019_court.jpg',
             ],
             [
-                'id' => 4,
                 'ubicacion' => 'Sevilla',
                 'modalidad' => 'Individual',
                 'categoria' => 'Master1000',
@@ -65,7 +61,6 @@ class TorneosTableSeeder extends Seeder
                 'imagen' => 'https://www.atptour.com/-/media/images/news/2023/06/12/09/16/roland-garros-tournament-profile.jpg',
             ],
             [
-                'id' => 5,
                 'ubicacion' => 'Malaga',
                 'modalidad' => 'Dobles',
                 'categoria' => 'Master200',
@@ -77,7 +72,6 @@ class TorneosTableSeeder extends Seeder
                 'imagen' => 'https://www.atptour.com/-/media/images/atp-tournaments/tournament-images/stuttgart_tournimage_july_30_2022.jpg',
             ],
             [
-                'id' => 6,
                 'ubicacion' => 'Cordoba',
                 'modalidad' => 'Individual y Dobles',
                 'categoria' => 'Master350',

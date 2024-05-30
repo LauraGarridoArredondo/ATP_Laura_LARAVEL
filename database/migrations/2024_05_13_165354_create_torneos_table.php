@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('torneos', function (Blueprint $table) {
-            $table->id()->primary()->unique();
+            $table->id();
             $table->string('ubicacion');
             $table->enum('modalidad', ['Individual', 'Dobles', 'Individual y Dobles'])->nullable()->default('Individual');
             $table->enum('categoria', ['Master1000', 'Master200','Master350'])->nullable()->default('Master1000');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('premios');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->string('imagen')->default('https://');
+            $table->string('imagen')->default('https://via.placeholder.com/150');
             $table->timestamps();
         });
     }
