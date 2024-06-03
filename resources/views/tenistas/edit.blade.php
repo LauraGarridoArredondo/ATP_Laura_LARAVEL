@@ -75,11 +75,15 @@
 
         <div class="form-group">
             <label for="mano">Mano:</label>
+            <br>
+            <label class="text-muted">diestro, zurdo</label>
             <input class="form-control" id="mano" name="mano" type="text" required value="{{$tenista->mano}}">
         </div>
 
         <div class="form-group">
             <label for="reves">Revés:</label>
+            <br>
+            <label class="text-muted">una_mano, dos_manos</label>
             <input class="form-control" id="reves" name="reves" type="text" required value="{{$tenista->reves}}">
         </div>
 
@@ -115,6 +119,7 @@
         </div>
     </div>
 </div>
+<br>
 </html>
 @include('about')
 @include('footer')

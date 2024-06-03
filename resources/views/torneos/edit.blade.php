@@ -43,21 +43,29 @@
 
                 <div class="form-group">
                     <label for="modalidad"> Modalidad:</label>
+                    <br>
+                    <label class="text-muted">Individual, Dobles o Individual y Dobles</label>
                     <input class="form-control" id="modalidad" name="modalidad" type="text" required value="{{$torneo->modalidad}}">
                 </div>
 
                 <div class="form-group">
                     <label for="categoria">Categoría</label>
+                    <br>
+                    <label class="text-muted">Master1000, Master200 o Master350</label>
                     <input class="form-control" id="categoria" name="categoria" type="text" required value="{{$torneo->categoria}}">
                 </div>
 
                 <div class="form-group">
                     <label for="superficie">Superficie</label>
+                    <br>
+                    <label class="text-muted">duro, hierba o arcilla</label>
                     <input class="form-control" id="superficie" name="superficie" type="text" required value="{{$torneo->superficie}}">
                 </div>
 
                 <div class="form-group">
                     <label for="vacantes">Vacantes</label>
+                    <br>
+                    <label class="text-muted">Solo el id del tenista a participar.</label>
                     <input class="form-control" id="vacantes" name="vacantes" type="number" required value="{{$torneo->vacantes}}">
                 </div>
 
