@@ -10,10 +10,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Editando Imagen Torneo</title>
 </head>
 @include('header')
-<h1 class="bg-info-subtle text-muted text-center">Editar Imagen del Torneo</h1>
+<h1 class="bg-info-subtle text-muted text-center" data-aos="zoom-in">Editar Imagen del Torneo</h1>
 @if ($errors->any())
     <div class="alert alert-danger alert-dismissible">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -27,10 +28,10 @@
 @endif
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" data-aos="slide-right">
             <img width="600px" src="{{ asset('images/atp_tour_2024.png') }}" alt="Logo" />
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" data-aos="slide-left">
             <dl class="text-lg-start">
                 <dt class="col-sm-2">ID:</dt>
                 <dd class="col-sm-10">{{$torneo->id}}</dd>
@@ -61,3 +62,7 @@
 @include('footer')
 </html>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>

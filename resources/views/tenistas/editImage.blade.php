@@ -9,10 +9,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Editar Imagen Tenistas</title>
 </head>
 @include('header')
-    <h1 class="bg-info-subtle text-muted text-center">Editar Imagen del Tenista</h1>
+    <h1 data-aos="fade-down" class="bg-info-subtle text-muted text-center">Editar Imagen del Tenista</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger alert-dismissible">
@@ -27,11 +28,11 @@
     @endif
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" data-aos="slide-right">
             <img width="600px" src="{{ asset('images/atp_tour_2024.png') }}" alt="Logo" />
         </div>
         <div class="col-md-6">
-    <dl class="text-lg-start">
+    <dl class="text-lg-start" data-aos="slide-left">
         <dt class="col-sm-2">ID:</dt>
         <dd class="col-sm-10">{{$tenista->id}}</dd>
         <dt class="col-sm-2">Nombre:</dt>
@@ -40,7 +41,7 @@
         <dd class="col-sm-10"><img src="{{ $tenista->imagen }}" alt="{{ $tenista->nombre }}" width="150"></dd>
     </dl>
 
-    <form action="{{ route("tenistas.updateImage", $tenista->id) }}" method="post" enctype="multipart/form-data">
+    <form data-aos="slide-left" action="{{ route("tenistas.updateImage", $tenista->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="form-group">
@@ -61,3 +62,7 @@
 @include('footer')
 </html>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>

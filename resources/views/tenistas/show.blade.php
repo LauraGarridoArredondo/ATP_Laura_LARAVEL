@@ -10,15 +10,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Tenistas Detalles</title>
 </head>
 <body>
     @section('title', 'Tenistas Detalles')
     <br>
-    <h1 class="text-center bg-info-subtle">Detalles de Tenistas</h1>
+    <h1 data-aos="fade-down" class="text-center bg-info-subtle">Detalles de Tenistas</h1>
     <br>
     <table>
-        <dl class="row text-muted  row-cols-md-6 row-cols-1">
+        <dl class="row text-muted  row-cols-md-6 row-cols-1" data-aos="fade-in">
             <dt class="col-sm-3">ID</dt>
             <dd class="col-sm-9">{{ $tenista->id }}</dd>
             <dt class="col-sm-3">Nombre</dt>
@@ -54,7 +55,7 @@
         </dl>
     </table>
 
-<a class="btn btn-primary text-white" href="{{route('tenistas.index')}}">Volver</a>
+<a data-aos="fade-down" class="btn btn-primary text-white" href="{{route('tenistas.index')}}">Volver</a>
 </body>
 <br> <br>
 <img height="700px" width="1490px" src="{{ asset('images/tenistasDetalles.png') }}" alt="GifTenistas" />
@@ -62,3 +63,7 @@
 @include('footer')
 </html>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>

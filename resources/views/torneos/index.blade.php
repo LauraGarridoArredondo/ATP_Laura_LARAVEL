@@ -9,16 +9,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Torneos</title>
 </head>
 <body>
 @include('header')
 <BR>
-<h1 class="text-center text-muted bg-info-subtle">Listado de Torneos</h1>
+<h1 data-aos="fade-down" class="text-center text-muted bg-info-subtle">Listado de Torneos</h1>
 
 <form action="{{ route('torneos.index') }}" class="mb-3" method="get">
     @csrf
-    <div class="input-group">
+    <div data-aos="fade-down" class="input-group">
         <input type="text" class="form-control" id="search" name="search" placeholder="Barcelona...">
         <div class="input-group-append">
             <button class="btn btn-primary" type="submit">Buscar</button>
@@ -27,7 +28,7 @@
 </form>
 
 @if(count($torneos) > 0)
-    <table class="table">
+    <table data-aos="fade-in" class="table">
         <thead>
         <tr>
             <th>ID</th>
@@ -84,3 +85,7 @@
 </body>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>

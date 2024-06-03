@@ -9,14 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Tenistas</title>
 </head>
 <body>
 @include('header')
 <BR>
-<h1 class="text-center text-muted bg-info-subtle">Listado de Tenistas</h1>
+<h1 data-aos="fade-down" class="text-center text-muted bg-info-subtle">Listado de Tenistas</h1>
 
-<form action="{{ route('tenistas.index') }}" class="mb-3" method="get">
+<form data-aos="fade-down" action="{{ route('tenistas.index') }}" class="mb-3" method="get">
 @csrf
     <div class="input-group">
         <input type="text" class="form-control" id="search" name="search" placeholder="Rafael Nadal...">
@@ -27,7 +28,7 @@
 </form>
 
 @if(count($tenistas) > 0)
-    <table class="table">
+    <table class="table" data-aos="fade-in">
         <thead>
         <tr>
             <th>ID</th>
@@ -88,9 +89,13 @@
     <p>No hay tenistas registrados...</p>
 @endif
 
-<a class="btn btn-success" href="{{route('tenistas.create')}}">Nuevo Tenista</a>
+<a  class="btn btn-success" href="{{route('tenistas.create')}}">Nuevo Tenista</a>
 @include('about')
 @include('footer')
 </body>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
