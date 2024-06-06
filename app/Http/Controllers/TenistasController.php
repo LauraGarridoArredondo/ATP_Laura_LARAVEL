@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Tenistas;
 use App\Models\Torneos;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
-
 class TenistasController extends Controller
 {
     public function index(Request $request)
@@ -169,4 +169,17 @@ class TenistasController extends Controller
             return Tenistas::findOrFail($id);
         });
     }
+
+    public function pdf($id)
+    {
+        $tenista = $this->getTenistas($id);
+
+        if (!$tenista) {
+            abort(404, 'Tenista not found');
+        }
+
+        $pdf = PDF::loadView('tenistas.pdf', compact('tenista'));
+        return $pdf->stream();
+    }
+
 }

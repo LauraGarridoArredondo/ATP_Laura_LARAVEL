@@ -21,6 +21,7 @@ Route::group(['prefix' => 'tenistas'], function () {
     Route::get('/create', [TenistasController::class, 'create'])->name('tenistas.create');
     Route::post('/', [TenistasController::class, 'store'])->name('tenistas.store');
 
+    Route::get('/pdf/{tenista}', [TenistasController::class, 'pdf'])->name('tenistas.pdf');
     Route::get('/vista', [TenistasController::class, 'vista'])->name('tenistas.vista');
 
     Route::get('/{tenista}/edit', [TenistasController::class, 'edit'])->name('tenistas.edit');

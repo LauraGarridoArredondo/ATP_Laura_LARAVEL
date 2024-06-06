@@ -56,6 +56,7 @@
     </table>
 
 <a data-aos="fade-down" class="btn btn-primary text-white" href="{{route('tenistas.index')}}">Volver</a>
+<a data-aos="fade-down" class="btn btn-primary text-white" href="{{route('tenistas.pdf', $tenista->id)}}">Descargar PDF</a>
 </body>
 <br> <br>
 <img height="700px" width="1490px" src="{{ asset('images/tenistasDetalles.png') }}" alt="GifTenistas" />
