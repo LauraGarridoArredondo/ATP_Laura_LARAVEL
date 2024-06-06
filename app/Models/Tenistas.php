@@ -9,7 +9,7 @@ class Tenistas extends Model
 {
     use HasFactory;
 
-    public static string $IMAGE_DEFAULT = 'https://';
+    public static string $IMAGE_DEFAULT = 'https://placeholder.com/300x300';
     protected $table = 'tenistas';
     protected $fillable = [
         'nombre',
@@ -68,6 +68,10 @@ class Tenistas extends Model
         $query->whereRaw('LOWER(nombre) LIKE ?', ["%" . strtolower($search) . "%"]);
         return $query;
     }
+
+    /**
+     * Obtener los torneos de un tenista.
+     */
     public function torneos()
     {
         return $this->hasMany(Torneos::class);

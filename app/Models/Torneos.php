@@ -12,7 +12,7 @@ class Torneos extends Model
     public $incrementing = false;
 
     protected $keyType = 'string';
-    public static string $IMAGE_DEFAULT = 'https://';
+    public static string $IMAGE_DEFAULT = 'https://placeholder.com/300x300';
     protected $fillable = [
         'ubicacion',
         'modalidad',
@@ -25,11 +25,23 @@ class Torneos extends Model
         'imagen'
     ];
 
+    /**
+     * Esto es para la relacion de torneo con tenistas.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+
     public function vacantes()
     {
         return $this->belongsTo(Tenistas::class, 'vacantes', 'id');
     }
 
+    /**
+     * Esto es para filtrar por nombre/ubicación del torneo.
+     * @param $query
+     * @param $search
+     * @param $vacantes
+     * @return mixed
+     */
     public function scopeFiltrar($query, $search, $vacantes){
         $query->whereRaw('LOWER(name) LIKE ?', ["%" . strtolower($search) . "%"]);
         if($vacantes && $vacantes != 1){
