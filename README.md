@@ -21,7 +21,7 @@ Este es un proyecto desarrollado con Laravel que proporciona una plataforma para
 1. Clona este repositorio en tu máquina local:
 
 ```bash
-git clone https://github.com/Alonso2002-jpg/Project-ATP-Laravel.git
+git clone https://github.com/LauraGarridoArredondo/ATP_Laura_LARAVEL.git
 ```
 2. Instala las dependencias del proyecto usando Composer:
 
@@ -120,5 +120,5 @@ Los detalles completos y descriptivos de cada torneo, incluyendo su nombre, ubic
 
 ## Contacto
 
-- Para preguntas, comentarios o sugerencias, por favor contáctanos en nuestro repositorio de GitHub: [Proyecto ATP](https://github.com/Alonso2002-jpg/Project-ATP-Laravel)
+- Para preguntas, comentarios o sugerencias, por favor contáctanos en nuestro repositorio de GitHub: [Proyecto ATP](https://github.com/LauraGarridoArredondo/ATP_Laura_LARAVEL.git)
 
