@@ -122,3 +122,6 @@ Los detalles completos y descriptivos de cada torneo, incluyendo su nombre, ubic
 
 - Para preguntas, comentarios o sugerencias, por favor contáctanos en nuestro repositorio de GitHub: [Proyecto ATP](https://github.com/LauraGarridoArredondo/ATP_Laura_LARAVEL.git)
 
+## Video Explicativo sobre las vistas y datos:
+https://youtu.be/pJYP8VzhXZA 
+
